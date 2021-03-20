@@ -1,6 +1,6 @@
 package com.market.catchprice.Network;
 
-public class ApiInterface {
+public interface ApiInterface {
 
    // @Multipart
    // @POST("/api/auth/login")
