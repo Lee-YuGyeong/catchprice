@@ -1,10 +1,21 @@
 package com.market.catchprice.Network;
 
-public class ApiInterface {
+import com.market.catchprice.Model.SignupDuplicate;
+import com.market.catchprice.Model.SignupInfo;
 
-   // @Multipart
-   // @POST("/api/auth/login")
-   // Call<LoginResponseInfo> Login(@Part("userID") RequestBody userID, @Part("userPassword") RequestBody userPassword); //로그인 데이터 검색
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
+public interface ApiInterface {
+    @POST("auth/register")
+    Call<Void> signup(@Body SignupInfo signupInfo);
+
+    @PUT("auth/register")
+    Call<Object> check_duplicate_email(@Body SignupDuplicate signupDuplicate);
+
+    @PUT("auth/register")
+    Call<Object> check_duplicate_nickname(@Body SignupDuplicate signupDuplicate);
 
 }
