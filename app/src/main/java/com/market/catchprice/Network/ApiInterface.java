@@ -23,8 +23,8 @@ public interface ApiInterface {
     @PUT("auth/register")
     Call<Object> check_duplicate_nickname(@Body SignupDuplicate signupDuplicate);
 
-    @Multipart
-    @POST("/api/auth/login")
-    Call<LoginResponse> Login(@Body LoginData); //로그인 데이터 검색
+
+//    @POST("/api/auth/login")
+//    Call<LoginResponse> Login(@Body LoginData); //로그인 데이터 검색
 
 }
