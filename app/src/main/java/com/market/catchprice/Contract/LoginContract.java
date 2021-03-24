@@ -5,7 +5,7 @@ import android.widget.EditText;
 public interface LoginContract {
 
     interface Model{
-        void LoginSuccessful();
+
     }
 
     interface View{
@@ -14,5 +14,6 @@ public interface LoginContract {
 
     interface Presenter{
         void check_null(EditText id, EditText pw);
+        void check_login(EditText id, EditText pw);
     }
 }
