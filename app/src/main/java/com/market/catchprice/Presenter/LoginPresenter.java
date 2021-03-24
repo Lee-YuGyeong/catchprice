@@ -50,7 +50,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     LoginResponse loginResponse = response.body();
                     view.show_login(loginResponse.getToken(), true);
 
-                } else { //response 실패
+                } else {
                     view.show_login("false", false);
                 }
 
@@ -58,7 +58,6 @@ public class LoginPresenter implements LoginContract.Presenter {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                //Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 view.show_login("false", false);
             }
         });

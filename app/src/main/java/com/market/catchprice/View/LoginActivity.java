@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             editor.commit();
 
         }else{
-            Toast.makeText(getApplicationContext(), "로그인 실패.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "아이디나 패스워드가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
         }
     }
 }
