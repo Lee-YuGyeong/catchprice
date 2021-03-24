@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Catchprice" >
+        <activity android:name=".View.SignupActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".View.LoginView"
             android:theme="@style/SplashTheme">
