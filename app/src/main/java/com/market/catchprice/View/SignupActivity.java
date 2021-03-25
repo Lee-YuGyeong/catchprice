@@ -1,6 +1,10 @@
 package com.market.catchprice.View;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,21 +18,25 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.market.catchprice.Contract.SignupContract;
 import com.market.catchprice.Presenter.SignupPresenter;
 import com.market.catchprice.R;
 
 public class SignupActivity extends AppCompatActivity implements SignupContract.View {
-    ImageView signup_background;
+    LinearLayout signup_background;
     ImageView signup_text_img, signup_btn_img, signup_agreement_img, agreement_check_img;
     LinearLayout signup_agreement;
     EditText signup_email, signup_pw, signup_repw, signup_nickname, signup_name, signup_birth;
     ImageView email_confirm, nickname_confirm;
-    RelativeLayout signup;
+    ImageView signup;
     TextView pw_check, pw_duplicate_check;
     TextView signup_male, signup_female;
     String email=null, pw=null, repw=null, name=null, birth=null, nickname=null;
@@ -73,7 +81,7 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
         signup_birth=findViewById(R.id.signup_birth);
         email_confirm=findViewById(R.id.email_confirm);//
         nickname_confirm=findViewById(R.id.nickname_confirm);//
-        signup=findViewById(R.id.signup);
+        signup=findViewById(R.id.signup_btn_img);
         pw_check=findViewById(R.id.pw_check_text);
         pw_duplicate_check=findViewById(R.id.pw_duplicate_check_text);
         signup_male=findViewById(R.id.signup_male);
@@ -81,12 +89,28 @@ public class SignupActivity extends AppCompatActivity implements SignupContract.
 
 
         Glide.with(this).load(R.drawable.signup_text).into(signup_text_img);
-        Glide.with(this).load(R.drawable.signup_btn).into(signup_btn_img);
+        Glide.with(this).load(R.drawable.checkbox).into(signup_btn_img);
         Glide.with(this).load(R.drawable.agreement_notok).into(agreement_check_img);
         Glide.with(this).load(R.drawable.agreement_text).into(signup_agreement_img);
         Glide.with(this).load(R.drawable.duplicate_text).into(email_confirm);
         Glide.with(this).load(R.drawable.duplicate_text).into(nickname_confirm);
-        Glide.with(this).load(R.drawable.signup_background).into(signup_background);
+        Glide.with(this)
+                .asBitmap()
+                .load(R.drawable.signup_background)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        Drawable drawable=new BitmapDrawable(getResources(), resource);
+                        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN){
+                            signup_background.setBackground(drawable);
+                        }
+                    }
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
     }
 
     @Override
