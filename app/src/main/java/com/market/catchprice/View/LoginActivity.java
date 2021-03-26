@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         init();
     }
 
+    @Override
     public void init() {
-
         imageView = (ImageView) findViewById(R.id.imageView);
         imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView3 = (ImageView) findViewById(R.id.imageView3);
