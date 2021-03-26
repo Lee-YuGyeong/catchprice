@@ -29,15 +29,15 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void check_null(EditText id, EditText pw) {
-        if (id.getText().toString().equals("")) view.show_null("아이디", false);
-        else if (pw.getText().toString().equals("")) view.show_null("패스워드", false);
-        else view.show_null("ture", true);
+        if (id.getText().toString().trim().equals("")) view.show_null("아이디", false);
+        else if (pw.getText().toString().trim().equals("")) view.show_null("패스워드", false);
+        else view.show_null("true", true);
     }
 
     @Override
     public void check_login(EditText id, EditText pw) {
 
-        LoginData loginData = new LoginData(id.getText().toString(), pw.getText().toString());
+        LoginData loginData = new LoginData(id.getText().toString().trim(), pw.getText().toString().trim());
 
         ApiInterface ApiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<LoginResponse> call = ApiInterface.Login(loginData);

@@ -9,6 +9,7 @@ public interface LoginContract {
     }
 
     interface View{
+        void init();
         void show_null(String str,boolean b);
         void show_login(String str,boolean b);
     }
