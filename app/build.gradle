@@ -47,4 +47,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'// Glide
 
+    implementation 'androidx.recyclerview:recyclerview:1.1.0' //리사이클러뷰
+
 }
