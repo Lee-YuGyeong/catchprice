@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(, container, false);
+        View v=inflater.inflate(null, container, false);
 
         init(v);
         //initializing UI
