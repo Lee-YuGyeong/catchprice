@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.market.catchprice.Contract.HomeContract;
 import com.market.catchprice.MainActivity;
 import com.market.catchprice.Presenter.HomePresenter;
+import com.market.catchprice.R;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
     MainActivity mainActivity;
@@ -33,7 +34,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(null, container, false);
+        View v=inflater.inflate(, container, false);
 
         init(v);
         //initializing UI
