@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.market.catchprice.Contract.HomeContract;
 import com.market.catchprice.MainActivity;
 import com.market.catchprice.Presenter.HomePresenter;
+import com.market.catchprice.R;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
     MainActivity mainActivity;

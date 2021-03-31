@@ -25,6 +25,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.market.catchprice.Contract.LoginContract;
+import com.market.catchprice.MainActivity;
 import com.market.catchprice.Presenter.LoginPresenter;
 import com.market.catchprice.R;
 
@@ -114,6 +115,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("token", str);
             editor.commit();
+            finish();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
         }else{
             Toast.makeText(getApplicationContext(), "아이디나 패스워드가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
