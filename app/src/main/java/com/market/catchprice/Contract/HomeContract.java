@@ -11,7 +11,7 @@ public interface HomeContract {
         void check_App_RunTimePermission();
     }
     interface Presenter{
-        void getting_myaddress_from_sharedpreference();
-        void getmylocation();
+        String getting_myaddress_from_sharedpreference();
+        String getmylocation();
     }
 }
