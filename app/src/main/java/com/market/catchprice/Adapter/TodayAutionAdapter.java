@@ -18,16 +18,19 @@ public class TodayAutionAdapter extends RecyclerView.Adapter<TodayAutionAdapter.
     private Context context;
     private List<TodayAutionResponse> list = new ArrayList<>();
 
-    public TodayAutionAdapter(Context context, List<TodayAutionResponse> list) {
+    public TodayAutionAdapter(Context context) {
         this.context = context;
-        this.list = list;
     }
 
     @Override
     public TodayAutionAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.today_aution_item, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
-        return myViewHolder;
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.today_aution_item, parent, false);
+//        MyViewHolder myViewHolder = new MyViewHolder(view);
+//        return myViewHolder;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View itemView = inflater.inflate(R.layout.today_aution_item, parent, false);
+
+        return new TodayAutionAdapter.MyViewHolder(itemView);
     }
 
     @Override
@@ -36,6 +39,14 @@ public class TodayAutionAdapter extends RecyclerView.Adapter<TodayAutionAdapter.
         holder.time.setText(list.get(position).getTime());
         holder.text_upper.setText(list.get(position).getText_upper());
         holder.text_lower.setText(list.get(position).getText_lower());
+    }
+
+    public void addItem(TodayAutionResponse item) {
+        list.add(item);
+    }
+
+    public TodayAutionResponse getItem(int position) {
+        return list.get(position);
     }
 
     @Override
@@ -56,6 +67,14 @@ public class TodayAutionAdapter extends RecyclerView.Adapter<TodayAutionAdapter.
             text_upper = (TextView) itemView.findViewById(R.id.text_upper);
             text_lower = (TextView) itemView.findViewById(R.id.text_lower);
         }
+
+//        public void setItem(TodayAutionResponse item) {
+//            title.setText(item.getTitle());
+//            time.setText(item.getTime());
+//            text_upper.setText(item.getText_upper());
+//            text_lower.setText(item.getText_lower());
+//        }
+
     }
 
 }

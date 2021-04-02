@@ -20,6 +20,13 @@ public class TodayAutionResponse {
     @Expose
     private String text_lower;
 
+    public TodayAutionResponse(String title, String time, String text_upper, String text_lower) {
+        this.title = title;
+        this.time = time;
+        this.text_upper = text_upper;
+        this.text_lower = text_lower;
+    }
+
     public String getTitle() {
         return title;
     }

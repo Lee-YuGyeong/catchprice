@@ -19,9 +19,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.market.catchprice.Adapter.TodayAutionAdapter;
 import com.market.catchprice.Contract.HomeContract;
 import com.market.catchprice.MainActivity;
+import com.market.catchprice.Model.TodayAutionResponse;
 import com.market.catchprice.Presenter.HomePresenter;
 import com.market.catchprice.R;
 
@@ -31,6 +35,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private static final int GPS_ENABLE_REQUEST_CODE=1002;
     private static final int PERMISSIONS_REQUEST_CODE=1001;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+
+    RecyclerView recyclerView;
+    TodayAutionAdapter adapter;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -62,6 +70,17 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     public void init(View v) {
 
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        adapter = new TodayAutionAdapter(getContext());
+
+        adapter.addItem(new TodayAutionResponse("1", "1","1","1"));
+        adapter.addItem(new TodayAutionResponse("2", "2","2","2"));
+        adapter.addItem(new TodayAutionResponse("3", "3","3","3"));
+
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
