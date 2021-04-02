@@ -4,7 +4,6 @@ public interface HomeContract {
     interface View{
         void setting_mylocation_btn();
         void setting_plus_floating_btn();
-        void getting_myaddress();
         void getlocationpermission();
         boolean check_Myphone_LocationServicesStatus();
         void showDialogForLocationServiceSetting();

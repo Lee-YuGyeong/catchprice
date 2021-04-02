@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".View.SignupActivity"
             android:theme="@style/Theme.Design.NoActionBar"/>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
         <activity android:name=".View.LoginActivity"
             android:theme="@style/Theme.Design.NoActionBar"/>
         <activity
