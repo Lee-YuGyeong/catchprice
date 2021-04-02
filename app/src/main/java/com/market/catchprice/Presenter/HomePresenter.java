@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,12 +39,8 @@ public class HomePresenter implements HomeContract.Presenter, LocationListener {
 
     @Override
     public String getting_myaddress_from_sharedpreference() {
-        String myaddress=prefs.getString("myaddress", null);
-        if(myaddress==null){
-            return "동네 설정";
-        }else{
-            return myaddress;
-        }
+        String myaddress=prefs.getString("myaddress", "동네 설정");
+        return myaddress;
     }
 
 
@@ -65,12 +62,27 @@ public class HomePresenter implements HomeContract.Presenter, LocationListener {
                         try{
                             myadd=geocoder.getFromLocation(mylat, mylon, 1);
                         }catch(IOException e){
-                            Toast.makeText(context, "지오코더 서비스 사용불가", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "GPS 서비스 사용불가", Toast.LENGTH_SHORT).show();
                         }
                         if(myadd==null||myadd.size()==0){
                             Toast.makeText(context, "GPS가 불안정하여 주소를 발견하지 못했습니다. ", Toast.LENGTH_SHORT).show();
                         }else{
-                            String myaddress=myadd.get(0).getAdminArea()+myadd.get(0).getLocality();
+                            String myaddress="동네 설정";
+                            String big=myadd.get(0).getAdminArea();
+                            String middle=myadd.get(0).getSubLocality();
+                            String small=myadd.get(0).getThoroughfare();
+                            if(big!=null&&middle==null&&small==null){
+                                myaddress=big;
+                            }
+                            if(big!=null&&middle!=null&&small==null){
+                                myaddress=big+" "+middle;
+                            }
+                            if(big!=null&&middle==null&&small!=null){
+                                myaddress=big+" "+small;
+                            }
+                            if(middle!=null&&small!=null){
+                                myaddress=middle+" "+small;
+                            }
                             editor.putString("myaddress", myaddress);
                             editor.putFloat("lat", (float)mylat);
                             editor.putFloat("lon", (float)mylon);
@@ -85,12 +97,27 @@ public class HomePresenter implements HomeContract.Presenter, LocationListener {
                     try{
                         myadd=geocoder.getFromLocation(mylat, mylon, 1);
                     }catch(IOException e){
-                        Toast.makeText(context, "지오코더 서비스 사용불가", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "GPS 서비스 사용불가", Toast.LENGTH_SHORT).show();
                     }
                     if(myadd==null||myadd.size()==0){
                         Toast.makeText(context, "GPS가 불안정하여 주소를 발견하지 못했습니다.", Toast.LENGTH_SHORT).show();
                     }else{
-                        String myaddress=myadd.get(0).getAdminArea()+myadd.get(0).getLocality();
+                        String myaddress="동네 설정";
+                        String big=myadd.get(0).getAdminArea();
+                        String middle=myadd.get(0).getSubLocality();
+                        String small=myadd.get(0).getThoroughfare();
+                        if(big!=null&&middle==null&&small==null){
+                            myaddress=big;
+                        }
+                        if(big!=null&&middle!=null&&small==null){
+                            myaddress=big+" "+middle;
+                        }
+                        if(big!=null&&middle==null&&small!=null){
+                            myaddress=big+" "+small;
+                        }
+                        if(middle!=null&&small!=null){
+                            myaddress=middle+" "+small;
+                        }
                         editor.putString("myaddress", myaddress);
                         editor.putFloat("lat", (float)mylat);
                         editor.putFloat("lon", (float)mylon);
@@ -101,11 +128,21 @@ public class HomePresenter implements HomeContract.Presenter, LocationListener {
                 Toast.makeText(context, "네트워크 통신이 불안정합니다.", Toast.LENGTH_SHORT).show();
             }
         }
-        return "동네 설정";
+        return prefs.getString("myaddress", "동네 설정");
     }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
+    }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
 
     }
 }

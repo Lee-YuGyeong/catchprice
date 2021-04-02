@@ -13,6 +13,8 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.market.catchprice.Adapter.TodayAutionAdapter;
 import com.market.catchprice.Contract.HomeContract;
 import com.market.catchprice.MainActivity;
@@ -35,9 +38,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private static final int GPS_ENABLE_REQUEST_CODE=1002;
     private static final int PERMISSIONS_REQUEST_CODE=1001;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    String mylocation;
 
     RecyclerView recyclerView;
     TodayAutionAdapter adapter;
+    ImageView gps;
+    TextView mylocation_text;
+    ImageView upload_btn;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -56,21 +63,28 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_home, container, false);
 
-        init(v);
-        //initializing UI
         homePresenter=new HomePresenter(mainActivity);
         //initializing HomePresenter
+        init(v);
+        //initializing UI
 
-        getting_myaddress();
         setting_mylocation_btn();
         setting_plus_floating_btn();
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return v;
     }
 
     public void init(View v) {
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        gps=v.findViewById(R.id.gps);
+        Glide.with(mainActivity).load(R.drawable.gps_btn).into(gps);
+        mylocation_text=v.findViewById(R.id.mylocation_text);
+        mylocation=homePresenter.getting_myaddress_from_sharedpreference();
+        mylocation_text.setText(mylocation);
+        upload_btn=v.findViewById(R.id.upload_btn);
+        Glide.with(mainActivity).load(R.drawable.product_upload_btn).into(upload_btn);
+
+        recyclerView = v.findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -85,17 +99,22 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void setting_mylocation_btn() {
-
+        gps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getlocationpermission();
+            }
+        });
     }
 
     @Override
     public void setting_plus_floating_btn() {
-        //getlocationpermission() 쓸 예정
-    }
+        upload_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    @Override
-    public void getting_myaddress() {
-        String myaddress=homePresenter.getting_myaddress_from_sharedpreference();
+            }
+        });
     }
 
 
@@ -162,7 +181,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
                 requestPermissions(REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
             }
         }else{
-            homePresenter.getmylocation();
+            mylocation=homePresenter.getmylocation();
+            mylocation_text.setText(mylocation);
         }
     }
 
