@@ -68,12 +68,6 @@ public class TodayAutionAdapter extends RecyclerView.Adapter<TodayAutionAdapter.
             text_lower = (TextView) itemView.findViewById(R.id.text_lower);
         }
 
-//        public void setItem(TodayAutionResponse item) {
-//            title.setText(item.getTitle());
-//            time.setText(item.getTime());
-//            text_upper.setText(item.getText_upper());
-//            text_lower.setText(item.getText_lower());
-//        }
 
     }
 

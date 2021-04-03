@@ -84,9 +84,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         upload_btn=v.findViewById(R.id.upload_btn);
         Glide.with(mainActivity).load(R.drawable.product_upload_btn).into(upload_btn);
 
+
         recyclerView = v.findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
+
+        RecyclerDecoration spaceDecoration = new RecyclerDecoration(30);
+        recyclerView.addItemDecoration(spaceDecoration);
 
         adapter = new TodayAutionAdapter(getContext());
 
