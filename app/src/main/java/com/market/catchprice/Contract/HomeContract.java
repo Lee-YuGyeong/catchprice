@@ -11,6 +11,7 @@ public interface HomeContract {
 
         void setting_recyclerView();
         void setting_gridView();
+        void click_spinner();
     }
     interface Presenter{
         String getting_myaddress_from_sharedpreference();

@@ -13,7 +13,10 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     RecyclerView gridView;
     TodayAutionAdapter todayAutionAdapter;
     AutionAdapter autionAdapter;
+    Spinner spinner;
     ImageView gps;
     TextView mylocation_text;
     ImageView upload_btn;
@@ -77,7 +81,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
         setting_recyclerView();
         setting_gridView();
-
+        click_spinner();
 
         return v;
     }
@@ -95,6 +99,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
         recyclerView = v.findViewById(R.id.recyclerView);
         gridView = v.findViewById(R.id.gridView);
+        spinner = v.findViewById(R.id.spinner);
 
     }
 
@@ -133,6 +138,24 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         autionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
 
         gridView.setAdapter(autionAdapter);
+    }
+
+    @Override
+    public void click_spinner() {
+        ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.home, android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), parent.getItemIdAtPosition(position) + " 클릭", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
     }
 
     @Override
