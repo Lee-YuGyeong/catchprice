@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.market.catchprice.Adapter.AutionAdapter;
+import com.market.catchprice.Adapter.TodayAutionAdapter;
 import com.market.catchprice.Contract.HomeContract;
 import com.market.catchprice.MainActivity;
 import com.market.catchprice.Model.TodayAutionResponse;
@@ -43,8 +44,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     RecyclerView recyclerView;
     RecyclerView gridView;
-    AutionAdapter TodayAutionAdapter;
-    AutionAdapter AutionAdapter;
+    TodayAutionAdapter todayAutionAdapter;
+    AutionAdapter autionAdapter;
     ImageView gps;
     TextView mylocation_text;
     ImageView upload_btn;
@@ -105,13 +106,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         RecyclerRightDecoration spaceDecoration = new RecyclerRightDecoration(30);
         recyclerView.addItemDecoration(spaceDecoration);
 
-        TodayAutionAdapter = new AutionAdapter(getContext());
+        todayAutionAdapter = new TodayAutionAdapter(getContext());
 
-        TodayAutionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
-        TodayAutionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
-        TodayAutionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
+        todayAutionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
+        todayAutionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
+        todayAutionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
 
-        recyclerView.setAdapter(TodayAutionAdapter);
+        recyclerView.setAdapter(todayAutionAdapter);
     }
 
     @Override
@@ -122,16 +123,16 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         RecyclerBottomDecoration spaceDecoration2 = new RecyclerBottomDecoration(30);
         gridView.addItemDecoration(spaceDecoration2);
 
-        AutionAdapter = new AutionAdapter(getContext());
+        autionAdapter = new AutionAdapter(getContext());
 
-        AutionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
-        AutionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
-        AutionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
-        AutionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
-        AutionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
-        AutionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
+        autionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
+        autionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
+        autionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
+        autionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
+        autionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
+        autionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
 
-        gridView.setAdapter(AutionAdapter);
+        gridView.setAdapter(autionAdapter);
     }
 
     @Override
