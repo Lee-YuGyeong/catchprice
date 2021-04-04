@@ -33,6 +33,7 @@ import com.market.catchprice.Adapter.AutionAdapter;
 import com.market.catchprice.Adapter.TodayAutionAdapter;
 import com.market.catchprice.Contract.HomeContract;
 import com.market.catchprice.MainActivity;
+import com.market.catchprice.Model.AutionResponse;
 import com.market.catchprice.Model.TodayAutionResponse;
 import com.market.catchprice.Presenter.HomePresenter;
 import com.market.catchprice.R;
@@ -117,6 +118,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         todayAutionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
         todayAutionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
 
+        todayAutionAdapter.setOnItemClickListener(new TodayAutionAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(TodayAutionAdapter.MyViewHolder holder, View view, int position) {
+                Toast.makeText(getContext(), "오늘의 추천 : " + position, Toast.LENGTH_LONG).show();
+            }
+        });
+
         recyclerView.setAdapter(todayAutionAdapter);
     }
 
@@ -130,13 +138,19 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
         autionAdapter = new AutionAdapter(getContext());
 
-        autionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
-        autionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
-        autionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
-        autionAdapter.addItem(new TodayAutionResponse("1", "1", "1", "1"));
-        autionAdapter.addItem(new TodayAutionResponse("2", "2", "2", "2"));
-        autionAdapter.addItem(new TodayAutionResponse("3", "3", "3", "3"));
+        autionAdapter.addItem(new AutionResponse("1", "1", "1", "1"));
+        autionAdapter.addItem(new AutionResponse("2", "2", "2", "2"));
+        autionAdapter.addItem(new AutionResponse("3", "3", "3", "3"));
+        autionAdapter.addItem(new AutionResponse("1", "1", "1", "1"));
+        autionAdapter.addItem(new AutionResponse("2", "2", "2", "2"));
+        autionAdapter.addItem(new AutionResponse("3", "3", "3", "3"));
 
+        autionAdapter.setOnItemClickListener(new AutionAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(AutionAdapter.MyViewHolder holder, View view, int position) {
+                Toast.makeText(getContext(), "아이템 선택됨 : ", Toast.LENGTH_LONG).show();
+            }
+        });
         gridView.setAdapter(autionAdapter);
     }
 
@@ -156,6 +170,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             }
         });
 
+    }
+
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

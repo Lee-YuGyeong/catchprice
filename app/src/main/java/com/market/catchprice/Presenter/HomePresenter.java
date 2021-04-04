@@ -29,6 +29,8 @@ public class HomePresenter implements HomeContract.Presenter, LocationListener {
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     double mylat, mylon;
     Geocoder geocoder;
+
+
     public HomePresenter(Context context){
         this.context=context;
         prefs=context.getSharedPreferences("mine", Context.MODE_PRIVATE);
@@ -145,4 +147,5 @@ public class HomePresenter implements HomeContract.Presenter, LocationListener {
     public void onProviderEnabled(@NonNull String provider) {
 
     }
+
 }
