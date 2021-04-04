@@ -14,27 +14,27 @@ import com.market.catchprice.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodayAutionAdapter extends RecyclerView.Adapter<TodayAutionAdapter.MyViewHolder> {
+public class AutionAdapter extends RecyclerView.Adapter<AutionAdapter.MyViewHolder> {
     private Context context;
     private List<TodayAutionResponse> list = new ArrayList<>();
 
-    public TodayAutionAdapter(Context context) {
+    public AutionAdapter(Context context) {
         this.context = context;
     }
 
     @Override
-    public TodayAutionAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AutionAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.today_aution_item, parent, false);
 //        MyViewHolder myViewHolder = new MyViewHolder(view);
 //        return myViewHolder;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.today_aution_item, parent, false);
 
-        return new TodayAutionAdapter.MyViewHolder(itemView);
+        return new AutionAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(TodayAutionAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(AutionAdapter.MyViewHolder holder, int position) {
         holder.title.setText(list.get(position).getTitle());
         holder.time.setText(list.get(position).getTime());
         holder.text_upper.setText(list.get(position).getText_upper());

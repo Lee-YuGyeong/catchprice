@@ -8,6 +8,9 @@ public interface HomeContract {
         boolean check_Myphone_LocationServicesStatus();
         void showDialogForLocationServiceSetting();
         void check_App_RunTimePermission();
+
+        void setting_recyclerView();
+        void setting_gridView();
     }
     interface Presenter{
         String getting_myaddress_from_sharedpreference();

@@ -14,14 +14,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="175dp"
-            android:layout_height="222dp"
-            android:background="#F1F1F1"
-            android:orientation="vertical">
+            android:layout_height="222dp">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#F1F1F1"
                 android:scaleType="fitXY" />
 
             <RelativeLayout
