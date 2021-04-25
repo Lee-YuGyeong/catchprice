@@ -22,7 +22,7 @@ public class ApiClient {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://ec2-13-209-8-243.ap-northeast-2.compute.amazonaws.com/api/")
+                .baseUrl("http://13.209.40.239/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();

@@ -15,7 +15,7 @@ public interface AutionAdapterContract {
     interface Model {
         void setData(List<AutionResponse> list);     // Adapter 데이터 갱신 메서드
 
-        AutionResponse AutionResponse(int position);            // 클릭한 user의 정보를 반환하는 메서드
+        AutionResponse AutionResponse(int position);   // 클릭한 user의 정보를 반환하는 메서드
     }
 
 }

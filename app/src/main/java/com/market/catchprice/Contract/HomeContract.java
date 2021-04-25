@@ -21,5 +21,9 @@ public interface HomeContract {
         String getmylocation();
     }
 
+    interface Model{
+        void getTodayAutionList();
+    }
+
 
 }
